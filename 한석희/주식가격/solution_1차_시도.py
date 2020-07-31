@@ -66,3 +66,12 @@ def solution(prices):
     answer = [ int(i[2]) for i in resultTuplesArray ]
     
     return answer
+
+
+# 이터레이션을 한 번만 하기 위해, 스택을 두 개로 분리하였고,
+# <뇌피셜>이지만 넘파이 벡터합이 O(1)이라고 생각하여,
+# 위와 같이 진행하였으나 시간을 초과하였습니다.
+
+# 1). 마지막 정렬이 O(N * Log N)이어서, 이 알고리즘은 O(n * log n)이 될 줄 알았는데, 시간 초과로 뜨네요?
+# 2). numpy.add가 O(1)이 아닌걸까요?
+# 도와주세요 !! ^^ 
