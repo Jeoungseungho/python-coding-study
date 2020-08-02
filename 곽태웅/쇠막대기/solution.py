@@ -1,25 +1,22 @@
-inp = input()
-
-inp_list = []
-cnt_list = []
-answer = 0
-top = ''
-for i in inp:
-    if i == '(':
-        inp_list.append(i)
-        cnt_list.append(1)
-    elif i == ')':
-        if top == '(':
-            inp_list.append(i)
-            cnt_list.pop()
-            for j in range(len(cnt_list)):
-                cnt_list[j] += 1
-        else:
-            inp_list.append(i)
-            answer += cnt_list[-1]
-            del cnt_list[-1]
-    top = inp_list[-1]
-    
-print(answer)
-
+def solution(inp):
+    cnt_st, answer = 0, 0
+    top = ''
+    for i in inp:
+        if i == '(':
+            cnt_st += 1
+            answer += 1
+        elif i == ')':
+            if top == '(':
+                cnt_st -= 1
+                answer -= 1
+                answer += cnt_st
+            else:
+                cnt_st -= 1
+        top = i
         
+    return answer
+
+print(solution(input()))
+
+## 수정 0802, 23:23
+## 수정 0802, 23:48
