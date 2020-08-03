@@ -1,3 +1,4 @@
+# O(n) 시간 복잡도 - cpp 프로그래머스 참고
 def solution(prices):
 
     # price의 사이즈 재기
