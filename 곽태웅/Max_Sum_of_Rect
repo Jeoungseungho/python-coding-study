@@ -1,0 +1,77 @@
+###실패..
+
+
+import numpy
+class Solution:
+    def maxSumSubmatrix(self, matrix: List[List[int]], k: int) -> int:
+        while True:
+            #행 다 더한 값
+            row = []
+            for i in matrix: row.append(sum(i))
+            #열 다 더한 값
+            col = []
+            for i in range(len(matrix[0])):
+                temp_col = 0
+                for j in range(len(matrix)): temp_col += matrix[j][i]
+                col.append(temp_col)
+        
+            temp_max = sum(col)
+            if temp_max > k:
+                temp_max = None
+            for i in row:
+                if i > k: None
+                elif temp_max == None: temp_max = i
+                elif temp_max < i: temp_max = i
+            for i in col:
+                if i > k: None
+                elif temp_max == None: temp_max = i
+                elif temp_max < i: temp_max = i
+
+            temp_i = None
+            temp_j = None
+            where = None
+            #열 더한 값 최대값 축출
+            for i in range(len(col)):
+                temp_col = 0
+                for j in range(i, len(col)):
+                    temp_col += col[j]
+                    if temp_col > k: None
+                    elif temp_col > temp_max:
+                        temp_max = temp_col
+                        temp_i = i
+                        temp_j = j
+                        where = 1
+
+            #행 더한 값 최대값 축출
+            for i in range(len(row)):
+                temp_row = 0
+                for j in range(i, len(row)):
+                    temp_row += row[j]
+                    if temp_row > k: None
+                    elif temp_row > temp_max:
+                        temp_max = temp_row
+                        temp_i = i
+                        temp_j = j
+                        where = 2
+            
+            ## 최대값 갱신 시 매트릭스 갱신
+            if temp_i != None:
+                if where == 1:
+                    max_matrix = numpy.zeros((len(row), temp_j-temp_i+1), int)
+                    for i in range(len(row)):
+                        cnt = 0
+                        for j in range(temp_i, temp_j + 1):
+                            max_matrix[i][cnt] = matrix[i][j]
+                            cnt += 1
+                if where == 2:
+                    max_matrix = numpy.zeros((temp_j-temp_i+1, len(col)), int)
+                    cnt = 0
+                    for i in range(temp_i, temp_j + 1):
+                        for j in range(len(col)):
+                            max_matrix[cnt][j] = matrix[i][j]
+                        cnt += 1
+           
+            if temp_i == None:
+                return temp_max
+            else:
+                matrix = max_matrix
