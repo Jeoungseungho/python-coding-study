@@ -1,0 +1,11 @@
+def hanoi(n,left,mid,right,answer):
+    if n==1:
+        return answer.append([left,right])
+    hanoi(n-1,left,right,mid,answer)
+    answer.append([left,right])
+    hanoi(n-1,mid,left,right,answer)
+
+def solution(n):
+    answer=[]
+    hanoi(n,1,2,3,answer)
+    return answer
