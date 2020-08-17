@@ -1,0 +1,14 @@
+def hanoi(n,a,b,c):
+    global cnt
+    cnt += 1
+    if n == 1: print(str(a) + "->" + str(c))
+    else:
+        hanoi(n-1,a,c,b)
+        print(str(a) + "->" + str(c))
+        hanoi(n-1,b,a,c)
+
+
+n = int(input())
+cnt = 0
+hanoi(n, 1, 2, 3)
+print(cnt)
