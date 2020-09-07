@@ -1,0 +1,21 @@
+1차 실패- 타임아웃
+==============================================================
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        temp = ""
+        temp_s = s
+        max = 0
+        while len(temp_s) > max:
+            for i in temp_s:
+                if i in temp:
+                    if max < len(temp):
+                        max = len(temp)
+                    temp = i
+                else:
+                    temp = temp + i
+            if max < len(temp):
+                max = len(temp)
+            temp_s = temp_s[1:]
+            temp = ""
+        return max
+==============================================================        
