@@ -1,0 +1,29 @@
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        from itertools import permutations
+        temp = []
+        cnt = 0
+        for i in range(len(strs)):
+            if strs[i] != "0":
+                if len(strs[i]) < 2:
+                    N = strs[i]
+                else: 
+                    N = list(permutations(strs[i], 2))
+                    N.sort()
+                temp.append([])
+                temp[cnt].append(strs[i])
+            else:
+                continue
+            for j in range(i+1, len(strs)):
+                if len(strs[i]) != len(strs[j]):
+                    continue
+                if len(strs[j]) < 2:
+                    K = strs[j]
+                else:
+                    K = list(permutations(strs[j], 2))
+                    K.sort()
+                if N == K:
+                    temp[cnt].append(strs[j])
+                    strs[j] = "0"
+            cnt += 1
+        return temp
