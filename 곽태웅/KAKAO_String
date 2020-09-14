@@ -1,0 +1,35 @@
+def solution(s):
+    answer = 10000
+    for i in range(1,int(len(s)/2) + 1):
+        pre_cnt = i
+        temp_word = ''
+        check = 0
+        j = 0
+        min_val = 0
+        while i*j < len(s):
+            j += 1
+            if j == 1:
+                temp_word = s[0:pre_cnt]
+            else:
+                if temp_word == s[pre_cnt:i*j]:
+                    check += 1
+                else:
+                    temp_word = s[pre_cnt:i*j]
+                    check -= 1
+                    if check == -1:
+                        min_val += i
+                        check = 0
+                    else:
+                        min_val += 1 + i
+                        check = 0
+            pre_cnt = i*j
+        if check == 0:
+            min_val += i - (i*j - len(s))
+            check = 0
+        else:
+            min_val += 1 + i
+            check = 0
+        if min_val < answer:
+            answer = min_val
+            
+    return answer
