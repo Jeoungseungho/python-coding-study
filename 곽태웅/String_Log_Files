@@ -1,0 +1,28 @@
+class Solution:
+    def reorderLogFiles(self, logs: List[str]) -> List[str]:
+        temp_dig = []
+        temp_word = {}
+        for i in logs:
+            k = i.split(" ")
+            if 48 <= ord(k[1][0]) <= 57:
+                temp_dig.append(logs.index(i))
+            else:
+                j = i.split(" ")
+                temp_word["".join(j[1:])] = temp_word.get("".join(j[1:]), []) + [logs.index(i)]
+        temp_word = sorted(temp_word.items())
+        answer = []
+        for i in range(len(temp_word)):
+            temp_w ={}
+            if len(temp_word[i][1]) > 1:
+                for k in range(len(temp_word[i][1])):
+                    temp_w[logs[temp_word[i][1][k]].split(" ")[0]] = temp_word[i][1][k]
+                temp_w = sorted(temp_w.items())
+                for k in range(len(temp_w)):                    
+                    answer.append(logs[temp_w[k][1]])
+            else:
+                answer.append(logs[temp_word[i][1][0]])
+                
+        for i in range(len(temp_dig)):
+            answer.append(logs[temp_dig[i]])
+        return answer
+                
