@@ -1,0 +1,17 @@
+class Solution:
+    def canVisitAllRooms(self, rooms: List[List[int]]) -> bool:
+        open_door = [0 for i in range(len(rooms))]
+        open_door[0] = 1
+        def went(key):
+            for i in key:
+                if open_door[i] == 1:
+                    continue
+                open_door[i] = 1
+                for j in rooms[i]:
+                    if open_door[j] != 1:
+                        went(rooms[i])
+        
+        went(rooms[0])
+        if 0 in open_door:
+            return False
+        return True
