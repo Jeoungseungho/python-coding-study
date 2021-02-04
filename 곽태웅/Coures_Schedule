@@ -1,0 +1,18 @@
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        temp = {}
+        for i in range(len(prerequisites)):
+            temp[prerequisites[i][0]] = temp.get(prerequisites[i][0], []) + [prerequisites[i][1]]
+            N = list(temp.keys())
+            if prerequisites[i][1] in N:
+                    if prerequisites[i][0] in temp[prerequisites[i][1]]:
+                        return False
+            for j in temp:
+                if prerequisites[i][1] in N:
+                    if prerequisites[i][1] in temp[j]:
+                        temp[prerequisites[i][0]] = temp.get(prerequisites[i][0], []) + temp[prerequisites[i][1]]
+            for j in temp:
+                if prerequisites[i][0] in temp[j]:
+                    temp[j] = temp.get(j, []) + temp[prerequisites[i][0]]
+                             
+        return True

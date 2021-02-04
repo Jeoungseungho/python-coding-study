@@ -1,0 +1,44 @@
+1차 시도 실패 -이해가 안됨
+====================================================
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        temp1 = []
+        temp2 = []
+        res =[]
+        #temp1 => 값이 몇갠지 판단 / temp2 => 해당 값
+        for i in nums: #여기 왜 남은 것들은 안들어가지지?
+            temp1.append(nums.count(i))
+            temp2.append(i)
+            while i in nums:
+                nums.remove(i)
+        
+        for _ in range(k):
+            res.append(temp2[temp1.index(max(temp1))])
+            temp1[temp1.index(max(temp1))] = 0
+            
+        return res
+====================================================
+
+2차 시도 실패 - 타임 아웃
+====================================================
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        temp1 = []
+        temp2 = []
+        res =[]
+        #temp1 => 값이 몇갠지 판단 / temp2 => 해당 값
+        for i in nums[:]: #여기 왜 남은 것들은 안들어가지지?
+            temp1.append(nums.count(i))
+            temp2.append(i)
+            while i in nums:
+                nums.remove(i)
+        
+        for _ in range(k):
+            res.append(temp2[temp1.index(max(temp1))])
+            temp1[temp1.index(max(temp1))] = 0
+            
+        return res
+====================================================
+        
+        
+        
