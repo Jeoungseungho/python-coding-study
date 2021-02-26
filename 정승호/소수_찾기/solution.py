@@ -6,9 +6,9 @@ def solution(numbers):
         
         for i in range(n):
             if visit[i] == 0:
-                visit[i] == 1
+                visit[i] = 1
                 dfs(word + numbers[i])
-                visit[i] == 0
+                visit[i] = 0
 
     result = set()
     numbers = list(numbers)
