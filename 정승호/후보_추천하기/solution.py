@@ -18,11 +18,5 @@ for i in range(total_reco):
             frame[reco_student[i]] = [1,i]
 
 ans_list = list(sorted(frame.keys()))
-answer = str(ans_list[0])
-for i in ans_list[1:]:
-    answer += " " + str(i)
-
-print(answer)
-
-
+print(*ans_list)
 
